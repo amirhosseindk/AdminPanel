@@ -34,9 +34,12 @@ namespace AdminPanel.Pages
                 BlogPost.ImageLink = await _fileUploadService.UploadFileAsync(Image);
             }
 
+            BlogPost.CreatedAt = DateTime.Now;
+
             await _blogPostService.CreateBlogPostAsync(BlogPost);
 
             return RedirectToPage("./BlogPosts");
         }
+
     }
 }

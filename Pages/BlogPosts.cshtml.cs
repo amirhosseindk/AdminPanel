@@ -11,13 +11,18 @@ namespace AdminPanel.Pages
         public BlogPostsModel(IBlogPostService blogPostService)
         {
             _blogPostService = blogPostService;
+            BlogPosts = new List<BlogPostDto>(); // Initialize BlogPosts to an empty list
         }
 
         public IEnumerable<BlogPostDto> BlogPosts { get; set; }
 
         public async Task OnGetAsync()
         {
-            BlogPosts = await _blogPostService.GetBlogPostsAsync();
+            var result = await _blogPostService.GetBlogPostsAsync();
+            if (result != null)
+            {
+                BlogPosts = result;
+            }
         }
     }
 }
