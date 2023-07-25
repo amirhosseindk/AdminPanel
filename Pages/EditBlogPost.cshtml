@@ -4,23 +4,35 @@
 
 <h1>Edit Blog Post</h1>
 
-<form method="post" enctype="multipart/form-data">
-    <input type="hidden" name="Id" value="@Model.BlogPost.id" />
+<form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+    <input type="hidden" asp-for="BlogPost.id" />
 
     <label for="author">Author:</label>
-    <input id="author" name="Author" type="text" value="@Model.BlogPost.author" />
+    <input id="author" name="BlogPost.Author" type="text" required value="@Model.BlogPost.author" />
 
     <label for="title">Title:</label>
-    <input id="title" name="Title" type="text" value="@Model.BlogPost.title" />
+    <input id="title" name="BlogPost.Title" type="text" required value="@Model.BlogPost.title" />
 
     <label for="text">Text:</label>
-    <textarea id="text" name="Text">@Model.BlogPost.text</textarea>
+    <textarea id="text" name="BlogPost.Text" required>@Model.BlogPost.text</textarea>
 
     <label for="image">Image:</label>
     <input id="image" name="Image" type="file" />
 
     <label for="imageLink">Image Link:</label>
-    <input id="imageLink" name="ImageLink" type="text" value="@Model.BlogPost.imageLink" />
+    <input id="imageLink" name="BlogPost.ImageLink" type="text" value="@Model.BlogPost.imageLink" />
 
     <button type="submit">Update</button>
 </form>
+
+<script>
+    function validateForm() {
+        var image = document.getElementById("image").value;
+        var imageLink = document.getElementById("imageLink").value;
+
+        if (image == "" && imageLink == "") {
+            alert("Please upload an image or enter an image link.");
+            return false;
+        }
+    }
+</script>

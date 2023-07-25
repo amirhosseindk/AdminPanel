@@ -20,7 +20,7 @@ namespace AdminPanel.Pages
         public UpdateBlogPostDto BlogPost { get; set; }
 
         [BindProperty]
-        public IFormFile Image { get; set; }
+        public IFormFile? Image { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -45,14 +45,20 @@ namespace AdminPanel.Pages
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (!ModelState.IsValid)
+            if (Image == null && string.IsNullOrEmpty(BlogPost.imageLink))
             {
+                ModelState.AddModelError("", "Please upload an image or enter an image link.");
                 return Page();
             }
 
             if (Image != null)
             {
                 BlogPost.imageLink = await _fileUploadService.UploadFileAsync(Image);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
             }
 
             await _blogPostService.UpdateBlogPostAsync(id, BlogPost);
