@@ -26,7 +26,6 @@ namespace AdminPanel.Pages
         {
             if (!ModelState.IsValid)
             {
-                // Log or display ModelState errors here
                 foreach (var modelState in ViewData.ModelState.Values)
                 {
                     foreach (var error in modelState.Errors)
@@ -40,6 +39,11 @@ namespace AdminPanel.Pages
             if (Image != null)
             {
                 BlogPost.imageLink = await _fileUploadService.UploadFileAsync(Image);
+            }
+            else if (string.IsNullOrEmpty(BlogPost.imageLink))
+            {
+                ModelState.AddModelError("ImageLink", "Please upload an image or enter an image link.");
+                return Page();
             }
 
             await _blogPostService.CreateBlogPostAsync(BlogPost);

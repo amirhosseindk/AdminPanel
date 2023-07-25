@@ -4,15 +4,15 @@
 
 <h1>Create Blog Post</h1>
 
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
     <label for="author">Author:</label>
-    <input id="author" name="BlogPost.Author" type="text" />
+    <input id="author" name="BlogPost.Author" type="text" required />
 
     <label for="title">Title:</label>
-    <input id="title" name="BlogPost.Title" type="text" />
+    <input id="title" name="BlogPost.Title" type="text" required />
 
     <label for="text">Text:</label>
-    <textarea id="text" name="BlogPost.Text"></textarea>
+    <textarea id="text" name="BlogPost.Text" required></textarea>
 
     <label for="image">Image:</label>
     <input id="image" name="Image" type="file" />
@@ -23,4 +23,14 @@
     <button type="submit">Create</button>
 </form>
 
+<script>
+    function validateForm() {
+        var image = document.getElementById("image").value;
+        var imageLink = document.getElementById("imageLink").value;
 
+        if (image == "" && imageLink == "") {
+            alert("Please upload an image or enter an image link.");
+            return false;
+        }
+    }
+</script>
