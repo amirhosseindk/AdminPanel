@@ -28,7 +28,7 @@ namespace AdminPanel.Services
                 await file.CopyToAsync(stream);
             }
 
-            return $"/uploads/{file.FileName}";
+            return $"https://admin.samairline.ir/uploads/{file.FileName}";
         }
 
     }

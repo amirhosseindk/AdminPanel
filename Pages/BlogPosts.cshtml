@@ -3,13 +3,19 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <h1>Blog Posts</h1>
+<br>
+<br>
 <a class="btn btn-primary" href="./CreateBlogPost">Create New Post</a>
+<br>
+<br>
 <table>
     <thead>
         <tr>
             <th>Author</th>
             <th>Title</th>
-            <th>Image Link</th>
+            <th>CreatedAt</th>
+            <th>EditedAt</th>
+            <th>RemovedAt</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -19,7 +25,9 @@
             <tr>
                 <td>@blogPost.author</td>
                 <td>@blogPost.title</td>
-                <td>@blogPost.imageLink</td>
+                <td>@blogPost.createdAt</td>
+                <td>@blogPost.editedAt</td>
+                <td>@blogPost.removedAt</td>
                 <td>
                     <a href="./EditBlogPost?id=@blogPost.id">Edit</a> |
                     <a href="./DeleteBlogPost?id=@blogPost.id">Delete</a>

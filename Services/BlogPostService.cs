@@ -55,7 +55,17 @@ namespace AdminPanel.Services
         public async Task DeleteBlogPostAsync(int id)
         {
             var client = _clientFactory.CreateClient();
-            await client.DeleteAsync($"https://api.samairline.ir/v1/post/{id}");
+            var response = await client.DeleteAsync($"https://api.samairline.ir/v1/post/{id}");
+
+            // Log the status code and response content for debugging
+            Console.WriteLine($"Response status: {response.StatusCode}");
+            if (!response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Response content: {content}");
+            }
         }
+
+
     }
 }

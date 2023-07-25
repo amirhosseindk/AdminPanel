@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using AdminPanel.IServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -14,12 +13,12 @@ namespace AdminPanel.Pages
             _blogPostService = blogPostService;
         }
 
-        [BindProperty]
-        public int Id { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int id { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            await _blogPostService.DeleteBlogPostAsync(Id);
+            await _blogPostService.DeleteBlogPostAsync(id);
             return RedirectToPage("./BlogPosts");
         }
     }
