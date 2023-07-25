@@ -1,0 +1,32 @@
+﻿@page
+@model AdminPanel.Pages.AirplanesModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h1>Airplanes</h1>
+<br>
+<br>
+<a class="btn btn-primary" href="./CreateAirplane">Create New Airplane</a>
+<br>
+<br>
+<table>
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>Register</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var airplane in Model.Airplanes)
+        {
+            <tr>
+                <td>@airplane.model</td>
+                <td>@airplane.register</td>
+                <td>
+                    <a href="./EditAirplane?id=@airplane.id">Edit</a> |
+                    <a href="./DeleteAirplane?id=@airplane.id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

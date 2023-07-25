@@ -1,0 +1,23 @@
+﻿@page
+@model CreateAirplaneModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h1>Create Blog Post</h1>
+
+<form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+    <label for="model">Model:</label>
+    <input id="model" name="Airplane.model" type="text" required />
+
+    <label for="register">Register:</label>
+    <input id="register" name="Airplane.register" type="text" required />
+
+    <label for="image">Image:</label>
+    <input id="image" name="Image" type="file" />
+
+    <label for="imageLink">Image Link:</label>
+    <input id="imageLink" name="Airplane.ImageLink" type="text" />
+
+    <button type="submit">Create</button>
+</form>
+
+<script src="site.js"></script>

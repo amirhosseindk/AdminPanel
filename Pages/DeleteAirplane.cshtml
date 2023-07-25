@@ -1,0 +1,12 @@
+﻿@page
+@model DeleteAirplaneModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h1>Delete Airplane</h1>
+
+<p>Are you sure you want to delete this airplane?</p>
+
+<form method="post">
+    <input type="hidden" name="Id" value="@Model.id" />
+    <button type="submit">Delete</button>
+</form>

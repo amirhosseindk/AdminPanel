@@ -1,0 +1,27 @@
+﻿@page
+@model EditAirplaneModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h1>Edit Airplane</h1>
+
+<form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+    <input type="hidden" asp-for="Airplane.id" />
+
+    <label for="model">Model:</label>
+    <input id="model" name="Airplane.model" type="text" required value="@Model.Airplane.model" />
+
+    <label for="register">Register:</label>
+    <input id="register" name="Airplane.register" type="text" required value="@Model.Airplane.register" />
+
+    <label for="image">Image:</label>
+    <input id="image" name="Image" type="file" />
+    <label class="file-upload-button" for="image">Choose File</label>
+    <span class="file-upload-text">No file chosen</span>
+
+    <label for="imageLink">Image Link:</label>
+    <input id="imageLink" name="Airplane.ImageLink" type="text" value="@Model.Airplane.imageLink" />
+
+    <button type="submit">Update</button>
+</form>
+
+<script src="site.js"></script>
