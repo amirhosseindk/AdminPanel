@@ -1,0 +1,12 @@
+﻿@page
+@model DeleteBODModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h1>Delete BOD</h1>
+
+<p>Are you sure you want to delete this BOD?</p>
+
+<form method="post">
+    <input type="hidden" name="Id" value="@Model.id" />
+    <button type="submit">Delete</button>
+</form>

@@ -1,0 +1,32 @@
+﻿@page
+@model AdminPanel.Pages.BODsModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h1>BODs</h1>
+<br>
+<br>
+<a class="btn btn-primary" href="./CreateBOD">Create New BOD</a>
+<br>
+<br>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bod in Model.BODs)
+        {
+            <tr>
+                <td>@bod.name</td>
+                <td>@bod.position</td>
+                <td>
+                    <a href="./EditBOD?id=@bod.id">Edit</a> |
+                    <a href="./DeleteBOD?id=@bod.id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

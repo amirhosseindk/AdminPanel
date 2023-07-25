@@ -1,0 +1,21 @@
+﻿@page
+@model CreateBODModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h1>Create BOD</h1>
+
+<form method="post">
+    <label for="name">Name:</label>
+    <input id="name" name="BOD.name" type="text" required />
+
+    <label for="position">Position:</label>
+    <input id="position" name="BOD.position" type="text" required />
+
+    <label for="image">Image:</label>
+    <input id="image" name="Image" type="file" />
+
+    <label for="imageLink">Image Link:</label>
+    <input id="imageLink" name="BOD.imageLink" type="text" />
+
+    <button type="submit">Create</button>
+</form>
