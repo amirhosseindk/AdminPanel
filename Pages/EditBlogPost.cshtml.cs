@@ -1,4 +1,4 @@
-using AdminPanel.Dto;
+using AdminPanel.Dto.BlogPost;
 using AdminPanel.IServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -17,14 +17,23 @@ namespace AdminPanel.Pages
         }
 
         [BindProperty]
-        public CreateBlogPostDto BlogPost { get; set; }
+        public UpdateBlogPostDto BlogPost { get; set; }
 
         [BindProperty]
         public IFormFile Image { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            BlogPost = await _blogPostService.GetBlogPostAsync(id);
+            var get = await _blogPostService.GetBlogPostAsync(id);
+            BlogPost = new UpdateBlogPostDto
+            {
+                id = get.id,
+                title = get.title,
+                author = get.author,
+                text = get.text,
+                imageLink = get.imageLink,
+                editedAt = DateTime.UtcNow
+            };
 
             if (BlogPost == null)
             {

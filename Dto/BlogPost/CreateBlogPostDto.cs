@@ -1,4 +1,4 @@
-﻿namespace AdminPanel.Dto
+﻿namespace AdminPanel.Dto.BlogPost
 {
     public class CreateBlogPostDto
     {

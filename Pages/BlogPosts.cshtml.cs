@@ -1,4 +1,4 @@
-using AdminPanel.Dto;
+using AdminPanel.Dto.BlogPost;
 using AdminPanel.IServices;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -11,10 +11,10 @@ namespace AdminPanel.Pages
         public BlogPostsModel(IBlogPostService blogPostService)
         {
             _blogPostService = blogPostService;
-            BlogPosts = new List<CreateBlogPostDto>(); // Initialize BlogPosts to an empty list
+            BlogPosts = new List<GetBlogPostDto>(); // Initialize BlogPosts to an empty list
         }
 
-        public IEnumerable<CreateBlogPostDto> BlogPosts { get; set; }
+        public IEnumerable<GetBlogPostDto> BlogPosts { get; set; }
 
         public async Task OnGetAsync()
         {

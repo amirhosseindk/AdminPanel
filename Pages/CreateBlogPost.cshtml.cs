@@ -1,4 +1,4 @@
-using AdminPanel.Dto;
+using AdminPanel.Dto.BlogPost;
 using AdminPanel.IServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
