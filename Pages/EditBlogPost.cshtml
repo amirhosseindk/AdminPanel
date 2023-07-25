@@ -18,21 +18,14 @@
 
     <label for="image">Image:</label>
     <input id="image" name="Image" type="file" />
+    <label class="file-upload-button" for="image">Choose File</label>
+    <span class="file-upload-text">No file chosen</span>
 
     <label for="imageLink">Image Link:</label>
     <input id="imageLink" name="BlogPost.ImageLink" type="text" value="@Model.BlogPost.imageLink" />
 
+
     <button type="submit">Update</button>
 </form>
 
-<script>
-    function validateForm() {
-        var image = document.getElementById("image").value;
-        var imageLink = document.getElementById("imageLink").value;
-
-        if (image == "" && imageLink == "") {
-            alert("Please upload an image or enter an image link.");
-            return false;
-        }
-    }
-</script>
+<script src="site.js"></script>

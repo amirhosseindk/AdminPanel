@@ -1,4 +1,9 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function validateForm() {
+    var image = document.getElementById("image").value;
+    var imageLink = document.getElementById("imageLink").value;
 
-// Write your JavaScript code.
+    if (image == "" && imageLink == "") {
+        alert("Please upload an image or enter an image link.");
+        return false;
+    }
+}
