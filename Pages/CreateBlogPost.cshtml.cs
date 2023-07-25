@@ -1,7 +1,7 @@
 using AdminPanel.Dto.BlogPost;
 using AdminPanel.IServices;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AdminPanel.Pages
 {
@@ -20,10 +20,21 @@ namespace AdminPanel.Pages
         public CreateBlogPostDto BlogPost { get; set; }
 
         [BindProperty]
-        public IFormFile Image { get; set; }
+        public IFormFile? Image { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
+            if (Image == null && string.IsNullOrEmpty(BlogPost.imageLink))
+            {
+                ModelState.AddModelError("Image", "Please upload an image or enter an image link.");
+                ModelState.AddModelError("BlogPost.imageLink", "Please upload an image or enter an image link.");
+            }
+
+            if (Image != null)
+            {
+                BlogPost.imageLink = await _fileUploadService.UploadFileAsync(Image);
+            }
+
             if (!ModelState.IsValid)
             {
                 foreach (var modelState in ViewData.ModelState.Values)
@@ -36,20 +47,9 @@ namespace AdminPanel.Pages
                 return Page();
             }
 
-            if (Image != null)
-            {
-                BlogPost.imageLink = await _fileUploadService.UploadFileAsync(Image);
-            }
-            else if (string.IsNullOrEmpty(BlogPost.imageLink))
-            {
-                ModelState.AddModelError("ImageLink", "Please upload an image or enter an image link.");
-                return Page();
-            }
-
             await _blogPostService.CreateBlogPostAsync(BlogPost);
 
             return RedirectToPage("./BlogPosts");
         }
-
     }
 }
