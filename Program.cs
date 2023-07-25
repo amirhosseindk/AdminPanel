@@ -10,6 +10,7 @@ builder.Services.AddScoped<IBlogPostService, BlogPostService>();
 builder.Services.AddScoped<IFileUploadService, FileUploadService>();
 builder.Services.AddScoped<IAirplaneService, AirplaneService>();
 builder.Services.AddScoped<IBODService, BODService>();
+builder.Services.AddScoped<ITextService, TextService>();
 
 var app = builder.Build();
 

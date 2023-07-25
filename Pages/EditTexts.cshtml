@@ -1,0 +1,24 @@
+﻿@page
+@model AdminPanel.Pages.EditTextsModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h1>Edit Texts</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="landingText">Landing Text:</label>
+        <textarea class="form-control" id="landingText" name="LandingText">@Model.LandingText</textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="cufText">CUF Text:</label>
+        <textarea class="form-control" id="cufText" name="CUFText">@Model.CUFText</textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="cusText">CUS Text:</label>
+        <textarea class="form-control" id="cusText" name="CUSText">@Model.CUSText</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Texts</button>
+</form>

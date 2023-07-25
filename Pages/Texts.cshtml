@@ -1,0 +1,16 @@
+﻿@page
+@model AdminPanel.Pages.TextsModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h1>Texts</h1>
+
+<h3>Landing Text</h3>
+<p>@Model.LandingText</p>
+
+<h3>CUF Text</h3>
+<p>@Model.CUFText</p>
+
+<h3>CUS Text</h3>
+<p>@Model.CUSText</p>
+
+<a class="btn btn-primary" href="/EditTexts">Edit Texts</a>
