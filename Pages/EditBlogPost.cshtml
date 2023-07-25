@@ -1,0 +1,23 @@
+﻿@page
+@model EditBlogPostModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h1>Edit Blog Post</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" name="Id" value="@Model.BlogPost.Id" />
+
+    <label for="author">Author:</label>
+    <input id="author" name="Author" type="text" value="@Model.BlogPost.Author" />
+
+    <label for="title">Title:</label>
+    <input id="title" name="Title" type="text" value="@Model.BlogPost.Title" />
+
+    <label for="text">Text:</label>
+    <textarea id="text" name="Text">@Model.BlogPost.Text</textarea>
+
+    <label for="image">Image:</label>
+    <input id="image" name="Image" type="file" />
+
+    <button type="submit">Update</button>
+</form>

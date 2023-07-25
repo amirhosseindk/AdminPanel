@@ -1,0 +1,21 @@
+﻿@page
+@model CreateBlogPostModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h1>Create Blog Post</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <label for="author">Author:</label>
+    <input id="author" name="Author" type="text" />
+
+    <label for="title">Title:</label>
+    <input id="title" name="Title" type="text" />
+
+    <label for="text">Text:</label>
+    <textarea id="text" name="Text"></textarea>
+
+    <label for="image">Image:</label>
+    <input id="image" name="Image" type="file" />
+
+    <button type="submit">Create</button>
+</form>
