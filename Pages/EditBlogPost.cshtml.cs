@@ -17,7 +17,7 @@ namespace AdminPanel.Pages
         }
 
         [BindProperty]
-        public BlogPostDto BlogPost { get; set; }
+        public CreateBlogPostDto BlogPost { get; set; }
 
         [BindProperty]
         public IFormFile Image { get; set; }
@@ -43,7 +43,7 @@ namespace AdminPanel.Pages
 
             if (Image != null)
             {
-                BlogPost.ImageLink = await _fileUploadService.UploadFileAsync(Image);
+                BlogPost.imageLink = await _fileUploadService.UploadFileAsync(Image);
             }
 
             await _blogPostService.UpdateBlogPostAsync(id, BlogPost);

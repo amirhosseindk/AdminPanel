@@ -11,10 +11,10 @@ namespace AdminPanel.Pages
         public BlogPostsModel(IBlogPostService blogPostService)
         {
             _blogPostService = blogPostService;
-            BlogPosts = new List<BlogPostDto>(); // Initialize BlogPosts to an empty list
+            BlogPosts = new List<CreateBlogPostDto>(); // Initialize BlogPosts to an empty list
         }
 
-        public IEnumerable<BlogPostDto> BlogPosts { get; set; }
+        public IEnumerable<CreateBlogPostDto> BlogPosts { get; set; }
 
         public async Task OnGetAsync()
         {

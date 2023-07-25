@@ -13,7 +13,15 @@ namespace AdminPanel.Services
 
         public async Task<string> UploadFileAsync(IFormFile file)
         {
-            var filePath = Path.Combine(_environment.WebRootPath, "uploads", file.FileName);
+            var uploadPath = Path.Combine(_environment.WebRootPath, "uploads");
+
+            // Create the uploads directory if it does not exist
+            if (!Directory.Exists(uploadPath))
+            {
+                Directory.CreateDirectory(uploadPath);
+            }
+
+            var filePath = Path.Combine(uploadPath, file.FileName);
 
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
@@ -22,5 +30,6 @@ namespace AdminPanel.Services
 
             return $"/uploads/{file.FileName}";
         }
+
     }
 }

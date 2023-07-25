@@ -17,7 +17,7 @@ namespace AdminPanel.Pages
         }
 
         [BindProperty]
-        public BlogPostDto BlogPost { get; set; }
+        public CreateBlogPostDto BlogPost { get; set; }
 
         [BindProperty]
         public IFormFile Image { get; set; }
@@ -26,15 +26,21 @@ namespace AdminPanel.Pages
         {
             if (!ModelState.IsValid)
             {
+                // Log or display ModelState errors here
+                foreach (var modelState in ViewData.ModelState.Values)
+                {
+                    foreach (var error in modelState.Errors)
+                    {
+                        Console.WriteLine(error.ErrorMessage);
+                    }
+                }
                 return Page();
             }
 
             if (Image != null)
             {
-                BlogPost.ImageLink = await _fileUploadService.UploadFileAsync(Image);
+                BlogPost.imageLink = await _fileUploadService.UploadFileAsync(Image);
             }
-
-            BlogPost.CreatedAt = DateTime.Now;
 
             await _blogPostService.CreateBlogPostAsync(BlogPost);
 

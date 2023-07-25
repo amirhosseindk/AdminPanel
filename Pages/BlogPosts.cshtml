@@ -17,12 +17,12 @@
         @foreach (var blogPost in Model.BlogPosts)
         {
             <tr>
-                <td>@blogPost.Author</td>
-                <td>@blogPost.Title</td>
-                <td>@blogPost.ImageLink</td>
+                <td>@blogPost.author</td>
+                <td>@blogPost.title</td>
+                <td>@blogPost.imageLink</td>
                 <td>
-                    <a href="./EditBlogPost?id=@blogPost.Id">Edit</a> |
-                    <a href="./DeleteBlogPost?id=@blogPost.Id">Delete</a>
+@*                    <a href="./EditBlogPost?id=@blogPost.Id">Edit</a> |
+                    <a href="./DeleteBlogPost?id=@blogPost.Id">Delete</a>*@
                 </td>
             </tr>
         }
