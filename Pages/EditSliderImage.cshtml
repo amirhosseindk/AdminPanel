@@ -1,0 +1,19 @@
+﻿@page
+@model EditSliderImageModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h1>Edit SliderImage</h1>
+
+<form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+    <input type="hidden" asp-for="sliderimage.id" />
+
+    <label for="image">Image:</label>
+    <input id="image" name="Image" type="file" />
+    <label class="file-upload-button" for="image">Choose File</label>
+    <span class="file-upload-text">No file chosen</span>
+
+    <label for="imageLink">Image Link:</label>
+    <input id="imageLink" name="BlogPost.ImageLink" type="text" value="@Model.sliderimage.imageLink" />
+
+    <button type="submit">Update</button>
+</form>

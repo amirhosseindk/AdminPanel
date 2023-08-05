@@ -1,0 +1,16 @@
+﻿@page
+@model CreateSliderImageModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h1>Create SliderImage</h1>
+
+<form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+
+    <label for="image">Image:</label>
+    <input id="image" name="Image" type="file" />
+
+    <label for="imageLink">Image Link:</label>
+    <input id="imageLink" name="BlogPost.ImageLink" type="text" />
+
+    <button type="submit">Create</button>
+</form>

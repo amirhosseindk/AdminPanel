@@ -1,0 +1,12 @@
+﻿@page
+@model DeleteSliderImageModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h1>Delete SliderImage</h1>
+
+<p>Are you sure you want to delete this SliderImage?</p>
+
+<form method="post">
+    <input type="hidden" name="Id" value="@Model.id" />
+    <button type="submit">Delete</button>
+</form>

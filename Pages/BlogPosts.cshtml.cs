@@ -11,7 +11,7 @@ namespace AdminPanel.Pages
         public BlogPostsModel(IBlogPostService blogPostService)
         {
             _blogPostService = blogPostService;
-            BlogPosts = new List<GetBlogPostDto>(); // Initialize BlogPosts to an empty list
+            BlogPosts = new List<GetBlogPostDto>();
         }
 
         public IEnumerable<GetBlogPostDto> BlogPosts { get; set; }
