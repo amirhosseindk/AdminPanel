@@ -5,23 +5,21 @@ namespace AdminPanel.Services
 {
     public class AirplaneService : IAirplaneService
     {
-        private readonly IHttpClientFactory _clientFactory;
+        private readonly HttpClient _client;
 
         public AirplaneService(IHttpClientFactory clientFactory)
         {
-            _clientFactory = clientFactory;
+            _client = clientFactory.CreateClient("MyHttpClientWithHeaders");
         }
 
         public async Task CreateAirplaneAsync(CreateAirplaneDto Airplane)
         {
-            var client = _clientFactory.CreateClient();
-            await client.PostAsJsonAsync("https://api.samairline.ir/v1/Airplanes", Airplane);
+            await _client.PostAsJsonAsync("https://api.samairline.ir/v1/Airplanes", Airplane);
         }
 
         public async Task DeleteAirplaneAsync(int id)
         {
-            var client = _clientFactory.CreateClient();
-            var response = await client.DeleteAsync($"https://api.samairline.ir/v1/Airplanes/{id}");
+            var response = await _client.DeleteAsync($"https://api.samairline.ir/v1/Airplanes/{id}");
 
             // Log the status code and response content for debugging
             Console.WriteLine($"Response status: {response.StatusCode}");
@@ -34,8 +32,7 @@ namespace AdminPanel.Services
 
         public async Task<GetAirplaneDto> GetAirplaneAsync(int id)
         {
-            var client = _clientFactory.CreateClient();
-            var response = await client.GetAsync($"https://api.samairline.ir/v1/Airplanes/{id}");
+            var response = await _client.GetAsync($"https://api.samairline.ir/v1/Airplanes/{id}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -48,8 +45,7 @@ namespace AdminPanel.Services
 
         public async Task<IEnumerable<GetAirplaneDto>> GetAirplanesAsync()
         {
-            var client = _clientFactory.CreateClient();
-            var response = await client.GetAsync("https://api.samairline.ir/v1/Airplanes");
+            var response = await _client.GetAsync("https://api.samairline.ir/v1/Airplanes");
 
             if (response.IsSuccessStatusCode)
             {
@@ -62,8 +58,7 @@ namespace AdminPanel.Services
 
         public async Task UpdateAirplaneAsync(int id, UpdateAirplaneDto Airplane)
         {
-            var client = _clientFactory.CreateClient();
-            await client.PutAsJsonAsync($"https://api.samairline.ir/v1/Airplanes/{id}", Airplane);
+            await _client.PutAsJsonAsync($"https://api.samairline.ir/v1/Airplanes/{id}", Airplane);
         }
     }
 }

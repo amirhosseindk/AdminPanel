@@ -5,17 +5,16 @@ namespace AdminPanel.Services
 {
     public class TextService : ITextService
     {
-        private readonly IHttpClientFactory _clientFactory;
+        private readonly HttpClient _client;
 
         public TextService(IHttpClientFactory clientFactory)
         {
-            _clientFactory = clientFactory;
+            _client = clientFactory.CreateClient("MyHttpClientWithHeaders");
         }
 
         public async Task<TextDto> GetLandingText()
         {
-            var client = _clientFactory.CreateClient();
-            var response = await client.GetAsync("https://api.samairline.ir/v1/LandingText");
+            var response = await _client.GetAsync("https://api.samairline.ir/v1/LandingText");
 
             if (response.IsSuccessStatusCode)
             {
@@ -27,8 +26,7 @@ namespace AdminPanel.Services
 
         public async Task<TextDto> GetCUFtext()
         {
-            var client = _clientFactory.CreateClient();
-            var response = await client.GetAsync("https://api.samairline.ir/v1/CUFtext");
+            var response = await _client.GetAsync("https://api.samairline.ir/v1/CUFtext");
 
             if (response.IsSuccessStatusCode)
             {
@@ -40,8 +38,7 @@ namespace AdminPanel.Services
 
         public async Task<TextDto> GetCUStext()
         {
-            var client = _clientFactory.CreateClient();
-            var response = await client.GetAsync("https://api.samairline.ir/v1/CUStext");
+            var response = await _client.GetAsync("https://api.samairline.ir/v1/CUStext");
 
             if (response.IsSuccessStatusCode)
             {
@@ -53,20 +50,17 @@ namespace AdminPanel.Services
 
         public async Task UpdateLandingTextAsync(TextDto updateDto)
         {
-            var client = _clientFactory.CreateClient();
-            await client.PutAsJsonAsync("https://api.samairline.ir/v1/LandingText", updateDto);
+            await _client.PutAsJsonAsync("https://api.samairline.ir/v1/LandingText", updateDto);
         }
 
         public async Task UpdateCUFTextAsync(TextDto updateDto)
         {
-            var client = _clientFactory.CreateClient();
-            await client.PutAsJsonAsync("https://api.samairline.ir/v1/CUFtext", updateDto);
+            await _client.PutAsJsonAsync("https://api.samairline.ir/v1/CUFtext", updateDto);
         }
 
         public async Task UpdateCUSTextAsync(TextDto updateDto)
         {
-            var client = _clientFactory.CreateClient();
-            await client.PutAsJsonAsync("https://api.samairline.ir/v1/CUStext", updateDto);
+            await _client.PutAsJsonAsync("https://api.samairline.ir/v1/CUStext", updateDto);
         }
     }
 }

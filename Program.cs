@@ -3,7 +3,10 @@ using AdminPanel.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
-builder.Services.AddHttpClient();
+builder.Services.AddHttpClient("MyHttpClientWithHeaders", c =>
+{
+    c.DefaultRequestHeaders.Add(".",".");
+});
 builder.Services.AddScoped<IBlogPostService, BlogPostService>();
 builder.Services.AddScoped<IFileUploadService, FileUploadService>();
 builder.Services.AddScoped<IAirplaneService, AirplaneService>();

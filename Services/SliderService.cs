@@ -5,23 +5,21 @@ namespace AdminPanel.Services
 {
     public class SliderService : ISliderService
     {
-        private readonly IHttpClientFactory _clientFactory;
+        private readonly HttpClient _client;
 
         public SliderService(IHttpClientFactory clientFactory)
         {
-            _clientFactory = clientFactory;
+            _client = clientFactory.CreateClient("MyHttpClientWithHeaders");
         }
 
         public async Task CreateSilderAsync(CreateImagesDto Silder)
         {
-            var client = _clientFactory.CreateClient();
-            await client.PostAsJsonAsync("https://api.samairline.ir/v1/SlidebarImages", Silder);
+            await _client.PostAsJsonAsync("https://localhost:44373/v1/SlidebarImages", Silder);
         }
 
         public async Task DeleteSilderAsync(int id)
         {
-            var client = _clientFactory.CreateClient();
-            var response = await client.DeleteAsync($"https://api.samairline.ir/v1/SlidebarImages/{id}");
+            var response = await _client.DeleteAsync($"https://localhost:44373/v1/SlidebarImages/{id}");
 
             Console.WriteLine($"Response status: {response.StatusCode}");
             if (!response.IsSuccessStatusCode)
@@ -33,8 +31,7 @@ namespace AdminPanel.Services
 
         public async Task<IEnumerable<GetImagesDto>> GetSilderAsync()
         {
-            var client = _clientFactory.CreateClient();
-            var response = await client.GetAsync("https://api.samairline.ir/v1/SlidebarImages");
+            var response = await _client.GetAsync("https://localhost:44373/v1/SlidebarImages");
 
             if (response.IsSuccessStatusCode)
             {
@@ -47,8 +44,7 @@ namespace AdminPanel.Services
 
         public async Task<GetImagesDto> GetSilderAsync(int id)
         {
-            var client = _clientFactory.CreateClient();
-            var response = await client.GetAsync($"https://api.samairline.ir/v1/SlidebarImages/{id}");
+            var response = await _client.GetAsync($"https://localhost:44373/v1/SlidebarImages/{id}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -61,8 +57,7 @@ namespace AdminPanel.Services
 
         public async Task UpdateSilderAsync(int id, UpdateImagesDto Silder)
         {
-            var client = _clientFactory.CreateClient();
-            await client.PutAsJsonAsync($"https://api.samairline.ir/v1/SlidebarImages/{id}", Silder);
+            await _client.PutAsJsonAsync($"https://localhost:44373/v1/SlidebarImages/{id}", Silder);
         }
     }
 }

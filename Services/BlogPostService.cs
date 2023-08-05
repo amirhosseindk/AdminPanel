@@ -5,17 +5,16 @@ namespace AdminPanel.Services
 {
     public class BlogPostService : IBlogPostService
     {
-        private readonly IHttpClientFactory _clientFactory;
+        private readonly HttpClient _client;
 
         public BlogPostService(IHttpClientFactory clientFactory)
         {
-            _clientFactory = clientFactory;
+            _client = clientFactory.CreateClient("MyHttpClientWithHeaders");
         }
 
         public async Task<IEnumerable<GetBlogPostDto>> GetBlogPostsAsync()
         {
-            var client = _clientFactory.CreateClient();
-            var response = await client.GetAsync("https://api.samairline.ir/v1/post");
+            var response = await _client.GetAsync("https://api.samairline.ir/v1/post");
 
             if (response.IsSuccessStatusCode)
             {
@@ -28,8 +27,7 @@ namespace AdminPanel.Services
 
         public async Task<GetBlogPostDto> GetBlogPostAsync(int id)
         {
-            var client = _clientFactory.CreateClient();
-            var response = await client.GetAsync($"https://api.samairline.ir/v1/post/{id}");
+            var response = await _client.GetAsync($"https://api.samairline.ir/v1/post/{id}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -42,20 +40,17 @@ namespace AdminPanel.Services
 
         public async Task CreateBlogPostAsync(CreateBlogPostDto blogPost)
         {
-            var client = _clientFactory.CreateClient();
-            await client.PostAsJsonAsync("https://api.samairline.ir/v1/post", blogPost);
+            await _client.PostAsJsonAsync("https://api.samairline.ir/v1/post", blogPost);
         }
 
         public async Task UpdateBlogPostAsync(int id, UpdateBlogPostDto blogPost)
         {
-            var client = _clientFactory.CreateClient();
-            await client.PutAsJsonAsync($"https://api.samairline.ir/v1/post/{id}", blogPost);
+            await _client.PutAsJsonAsync($"https://api.samairline.ir/v1/post/{id}", blogPost);
         }
 
         public async Task DeleteBlogPostAsync(int id)
         {
-            var client = _clientFactory.CreateClient();
-            var response = await client.DeleteAsync($"https://api.samairline.ir/v1/post/{id}");
+            var response = await _client.DeleteAsync($"https://api.samairline.ir/v1/post/{id}");
 
             // Log the status code and response content for debugging
             Console.WriteLine($"Response status: {response.StatusCode}");

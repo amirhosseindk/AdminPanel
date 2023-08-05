@@ -5,23 +5,21 @@ namespace AdminPanel.Services
 {
     public class BODService : IBODService
     {
-        private readonly IHttpClientFactory _clientFactory;
+        private readonly HttpClient _client;
 
         public BODService(IHttpClientFactory clientFactory)
         {
-            _clientFactory = clientFactory;
+            _client = clientFactory.CreateClient("MyHttpClientWithHeaders");
         }
 
         public async Task CreateBODAsync(CreateBODDto bod)
         {
-            var client = _clientFactory.CreateClient();
-            await client.PostAsJsonAsync("https://api.samairline.ir/v1/BODs", bod);
+            await _client.PostAsJsonAsync("https://api.samairline.ir/v1/BODs", bod);
         }
 
         public async Task DeleteBODAsync(int id)
         {
-            var client = _clientFactory.CreateClient();
-            var response = await client.DeleteAsync($"https://api.samairline.ir/v1/BODs/{id}");
+            var response = await _client.DeleteAsync($"https://api.samairline.ir/v1/BODs/{id}");
 
             // Log the status code and response content for debugging
             Console.WriteLine($"Response status: {response.StatusCode}");
@@ -34,8 +32,7 @@ namespace AdminPanel.Services
 
         public async Task<GetBODDto> GetBODAsync(int id)
         {
-            var client = _clientFactory.CreateClient();
-            var response = await client.GetAsync($"https://api.samairline.ir/v1/BODs/{id}");
+            var response = await _client.GetAsync($"https://api.samairline.ir/v1/BODs/{id}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -48,8 +45,7 @@ namespace AdminPanel.Services
 
         public async Task<IEnumerable<GetBODDto>> GetBODsAsync()
         {
-            var client = _clientFactory.CreateClient();
-            var response = await client.GetAsync("https://api.samairline.ir/v1/BODs");
+            var response = await _client.GetAsync("https://api.samairline.ir/v1/BODs");
 
             if (response.IsSuccessStatusCode)
             {
@@ -62,8 +58,7 @@ namespace AdminPanel.Services
 
         public async Task UpdateBODAsync(int id, UpdateBODDto bod)
         {
-            var client = _clientFactory.CreateClient();
-            await client.PutAsJsonAsync($"https://api.samairline.ir/v1/BODs/{id}", bod);
+            await _client.PutAsJsonAsync($"https://api.samairline.ir/v1/BODs/{id}", bod);
         }
     }
 }
