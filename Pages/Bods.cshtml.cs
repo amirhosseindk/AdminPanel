@@ -1,9 +1,11 @@
 using AdminPanel.Dto.BOD;
 using AdminPanel.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AdminPanel.Pages
 {
+    [Authorize]
     public class BODsModel : PageModel
     {
         private readonly IBODService _bodService;

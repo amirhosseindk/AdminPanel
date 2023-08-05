@@ -1,9 +1,11 @@
 using AdminPanel.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AdminPanel.Pages
 {
+    [Authorize]
     public class DeleteSliderImageModel : PageModel
     {
         private readonly ISliderService _sliderImageService;

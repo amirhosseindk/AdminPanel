@@ -1,10 +1,12 @@
 using System.Threading.Tasks;
 using AdminPanel.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AdminPanel.Pages
 {
+    [Authorize]
     public class TextsModel : PageModel
     {
         private readonly ITextService _textService;

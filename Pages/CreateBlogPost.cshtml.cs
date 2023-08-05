@@ -2,9 +2,11 @@ using AdminPanel.Dto.BlogPost;
 using AdminPanel.IServices;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AdminPanel.Pages
 {
+    [Authorize]
     public class CreateBlogPostModel : PageModel
     {
         private readonly IBlogPostService _blogPostService;
@@ -24,7 +26,7 @@ namespace AdminPanel.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (Image == null && string.IsNullOrEmpty(BlogPost.imageLink))
+            if (Image == null || string.IsNullOrEmpty(BlogPost.imageLink))
             {
                 ModelState.AddModelError("Image", "Please upload an image or enter an image link.");
                 ModelState.AddModelError("BlogPost.imageLink", "Please upload an image or enter an image link.");

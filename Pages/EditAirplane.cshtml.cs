@@ -1,10 +1,12 @@
 using AdminPanel.Dto.Airplane;
 using AdminPanel.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AdminPanel.Pages
 {
+    [Authorize]
     public class EditAirplaneModel : PageModel
     {
         private readonly IAirplaneService _airplaneService;
@@ -43,7 +45,7 @@ namespace AdminPanel.Pages
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (Image == null && string.IsNullOrEmpty(Airplane.imageLink))
+            if (Image == null || string.IsNullOrEmpty(Airplane.imageLink))
             {
                 ModelState.AddModelError("", "Please upload an image or enter an image link.");
                 return Page();

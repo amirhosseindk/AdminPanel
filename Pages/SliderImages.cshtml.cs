@@ -1,9 +1,11 @@
 using AdminPanel.Dto.SlideShow;
 using AdminPanel.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AdminPanel.Pages
 {
+    [Authorize]
     public class SliderModel : PageModel
     {
         private readonly ISliderService _sliderService;

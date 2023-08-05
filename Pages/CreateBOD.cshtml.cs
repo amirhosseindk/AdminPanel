@@ -1,10 +1,12 @@
 using AdminPanel.Dto.BOD;
 using AdminPanel.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AdminPanel.Pages
 {
+    [Authorize]
     public class CreateBODModel : PageModel
     {
         private readonly IBODService _bodService;
@@ -24,7 +26,7 @@ namespace AdminPanel.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (Image == null && string.IsNullOrEmpty(BOD.imageLink))
+            if (Image == null || string.IsNullOrEmpty(BOD.imageLink))
             {
                 ModelState.AddModelError("Image", "Please upload an image or enter an image link.");
                 ModelState.AddModelError("BOD.imageLink", "Please upload an image or enter an image link.");

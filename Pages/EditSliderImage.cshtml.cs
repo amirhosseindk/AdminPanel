@@ -1,10 +1,12 @@
 using AdminPanel.Dto.SlideShow;
 using AdminPanel.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AdminPanel.Pages
 {
+    [Authorize]
     public class EditSliderImageModel : PageModel
     {
         private readonly ISliderService _sliderImageService;
@@ -41,7 +43,7 @@ namespace AdminPanel.Pages
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-            if (Image == null && string.IsNullOrEmpty(sliderimage.imageLink))
+            if (Image == null || string.IsNullOrEmpty(sliderimage.imageLink))
             {
                 ModelState.AddModelError("", "Please upload an image or enter an image link.");
                 return Page();

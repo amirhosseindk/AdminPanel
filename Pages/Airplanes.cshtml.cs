@@ -1,9 +1,11 @@
 using AdminPanel.Dto.Airplane;
 using AdminPanel.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AdminPanel.Pages
 {
+    [Authorize]
     public class AirplanesModel : PageModel
     {
         private readonly IAirplaneService _airplaneService;
